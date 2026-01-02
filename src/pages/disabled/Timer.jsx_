@@ -1,0 +1,167 @@
+import React, { useEffect, useRef } from "react";
+import { proxy, useSnapshot } from "valtio";
+
+export const clockState = proxy({
+  timeout: 10,
+  playing: false,
+  msg: "Ready to start",
+});
+
+function clock(curr, state, bool) {
+  let current_time = 0;
+  console.log("boolean value: ", bool);
+
+  // Reset
+  if (bool === undefined) {
+    clearInterval(curr.current);
+    state.timeout = 10;
+    state.playing = false;
+    state.msg = "Timer reset - Ready to start";
+    return;
+  }
+
+  // Clear any existing interval
+  if (curr.current) {
+    clearInterval(curr.current);
+    curr.current = null;
+  }
+
+  state.playing = bool;
+
+  if (state.playing === true) {
+    // Reset timer if it reached 0
+    if (state.timeout <= 0) {
+      state.timeout = 10;
+    }
+    state.msg = "Timer running - Counting down";
+
+    // Start the countdown
+    curr.current = setInterval(() => {
+      state.timeout = state.timeout - 1;
+      if (state.timeout <= 0) {
+        clearInterval(curr.current);
+        curr.current = null;
+        state.playing = false;
+        state.msg = "Time's up!";
+      } else {
+        state.msg = `Timer running - ${state.timeout} seconds remaining`;
+      }
+    }, 1000);
+  } else {
+    // Pause
+    current_time = state.timeout;
+    state.msg = `Timer paused at ${state.timeout} seconds`;
+  }
+}
+
+const Timer = () => {
+  const snap = useSnapshot(clockState);
+  const state = clockState;
+  const intervalRef = useRef(null);
+
+//  clock(intervalRef.current, state { timeout, playing, msg }, )
+//  function clock(bool) {
+//    let current_time = 0;
+//    console.log("boolean value: ", bool);
+//
+//    // Reset
+//    if (bool === undefined) {
+//      clearInterval(intervalRef.current);
+//      state.timeout = 10;
+//      state.playing = false;
+//      state.msg = "Timer reset - Ready to start";
+//      return;
+//    }
+//
+//    // Clear any existing interval
+//    if (intervalRef.current) {
+//      clearInterval(intervalRef.current);
+//      intervalRef.current = null;
+//    }
+//
+//    state.playing = bool;
+//
+//    if (state.playing === true) {
+//      // Reset timer if it reached 0
+//      if (state.timeout <= 0) {
+//        state.timeout = 10;
+//      }
+//      state.msg = "Timer running - Counting down";
+//
+//      // Start the countdown
+//      intervalRef.current = setInterval(() => {
+//        state.timeout = state.timeout - 1;
+//        if (state.timeout <= 0) {
+//          clearInterval(intervalRef.current);
+//          intervalRef.current = null;
+//          state.playing = false;
+//          state.msg = "Time's up!";
+//        } else {
+//          state.msg = `Timer running - ${state.timeout} seconds remaining`;
+//        }
+//      }, 1000);
+//    } else {
+//      // Pause
+//      current_time = state.timeout;
+//      state.msg = `Timer paused at ${state.timeout} seconds`;
+//    }
+//  }
+
+  // Cleanup on unmount
+  //useEffect(() => {
+  //  return () => {
+  //    if (intervalRef.current) {
+  //      clearInterval(intervalRef.current);
+  //    }
+  //  };
+  //}, []);
+
+  const CountDown = () => {
+    const snap = useSnapshot(clockState);
+
+    return (
+      <div className="timer-display">
+        <div className="timer-number">{snap.timeout}</div>
+        <div className="timer-label">seconds</div>
+      </div>
+    );
+  };
+
+  return (
+    <>
+      <div className="profile-container pt-20 min-h-screen">
+        <div className="timer-container">
+          <h1 className="home-title">Timer</h1>
+          <div className="timer-card">
+            <CountDown />
+            <div className="timer-controls">
+              <button
+                className="timer-button start-button"
+                onClick={() => clock(intervalRef, state, true)}
+                disabled={snap.playing}
+              >
+                Start
+              </button>
+              <button
+                className="timer-button stop-button"
+                onClick={() => clock(intervalRef, state, false)}
+                disabled={!snap.playing}
+              >
+                Pause
+              </button>
+              <button
+                className="timer-button reset-button"
+                onClick={() => clock(intervalRef, state)}
+              >
+                Reset
+              </button>
+              <p className="clock-msg">{snap.msg}</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </>
+  );
+};
+
+export default Timer;

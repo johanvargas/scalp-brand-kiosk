@@ -1,0 +1,47 @@
+install bundler
+  webpack
+  browsify?
+    thats what npm run build is but either might be better?
+
+
+5 Question
+
+routes________
+
+home -->
+  button start questionnaire sequence
+
+question 1 --> 
+question 2 --> 
+question 3 --> 
+question 4 --> 
+question 5 -->
+
+result 
+
+
+
+-> (men's) camerafilter
+
+
+
+
+              <span className="option-letter">
+                {String.fromCharCode(65 + index)}.
+              </span>
+
+
+
+          disabled={current.current === snap.questions.length - 1 || snapGame.remainingPlays === 1}
+
+
+
+
+  const handlePrevious = () => {
+    if (current.current > 0) {
+      current.current -= 1;
+      setSelectedAnswer(null);
+    }
+  };
+
+  //const randomNum = Math.ceil(Math.random() * 20 - 1);
