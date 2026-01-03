@@ -40,17 +40,17 @@ body {
 /* Page Container - Main wrapper for all pages */
 .page-container {
   position: relative;
-  width: 788px;
+  width: 100vw;
   margin: 0 auto;
-  padding: 20px 24px 80px 24px;
+  padding: 20px 24px 24px 24px;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: flex-start;
-  gap: 16px;
+  gap: 12px;
   height: 1060px;
   box-sizing: border-box;
-  overflow-y: auto;
+  overflow: hidden;
 }
 
 .page-container.home-page {
@@ -74,7 +74,7 @@ body {
   align-items: center;
   justify-content: flex-start;
   width: 100%;
-  padding: 2em 1em;
+  padding: 1em 1em;
   gap: 2em;
   box-sizing: border-box;
 }
@@ -139,26 +139,37 @@ body {
 }
 
 .results-cta-button {
+  flex: none;
+  font-size: 1.5rem;
+  font-weight: 700;
+  border-radius: 42px;
+  border: none;
   background: #000;
   color: #fff;
-  border: none;
-  border-radius: 35px;
-  padding: 20px 50px;
-  font-size: 1.25rem;
-  font-weight: 800;
   cursor: pointer;
   transition: all 0.2s ease;
-  margin: 2em auto;
-  display: block;
+  touch-action: manipulation;
+  -webkit-tap-highlight-color: transparent;
+  padding: 23px 95px;
+  margin: 1em 0 1em 0;
+  min-height: 58px;
   box-sizing: border-box;
 }
 
-.results-cta-button:hover {
+.results-cta-button:hover:not(:disabled),
+.results-cta-button:focus:not(:disabled) {
   background: #333;
+  outline: none;
 }
 
-.results-cta-button:active {
+.results-cta-button:active:not(:disabled) {
   transform: scale(0.98);
+}
+
+.results-cta-button:disabled {
+  opacity: 0.4;
+  cursor: not-allowed;
+  background: #666;
 }
 
 /* Question Container */
@@ -177,12 +188,16 @@ body {
   box-sizing: border-box;
 }
 
+.question-page {
+  width: 66.1vw;
+}
+
 .question-title {
   font-size: 4rem;
   font-weight: 700;
   color: #000;
   text-align: center;
-  margin: .6em 0 0em 0;
+  margin: 0.4em 0 0 0;
   flex-shrink: 0;
   width: 100%;
   max-width: 100%;
@@ -193,7 +208,7 @@ body {
 .question-progress-line {
   width: 100%;
   height: 10px;
-  margin: 0 auto 2em auto;
+  margin: 0 auto 0 auto;
   flex-shrink: 0;
   position: relative;
   background-color: #000;
@@ -205,6 +220,7 @@ body {
     linear-gradient(to right, transparent 0%, transparent calc(80% - 0.5px), #fff calc(80% - 0.5px), #fff calc(80% + 0.5px), transparent calc(80% + 0.5px));
   background-size: 100% 100%;
   background-repeat: no-repeat;
+  border-radius: 1px;;
 }
 
 .question-progress-line::before {
@@ -214,7 +230,7 @@ body {
   left: 0;
   bottom: 0;
   width: var(--fill-percentage, 0%);
-  background-color: #ffeddd; /* Light color for completed sections */
+  background-color: #7f766e ; /* Light color for completed sections */
   transition: width 0.3s ease;
   z-index: 1;
 }
@@ -243,13 +259,20 @@ body {
   font-weight: 400;
   color: #000;
   line-height: 1.5;
-  margin: 0 0 2em 0;
   text-align: center;
   flex-shrink: 0;
   width: 100%;
   max-width: 100%;
   padding: 0;
   box-sizing: border-box;
+  height: calc(1060px * 0.10); /* ~106px - consistent height relative to body */
+  min-height: 70px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  word-wrap: break-word;
+  overflow-wrap: break-word;
 }
 
 /* Options Container */
@@ -257,19 +280,19 @@ body {
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 0.75em;
+  gap: 0.6em;
   margin: 0;
-  flex: 1;
-  min-height: 0;
   width: 100%;
   max-width: 100%;
   padding: 0;
   box-sizing: border-box;
+  flex-shrink: 0;
 }
 
 .option-button {
   width: 100%;
   max-width: 680px;
+  height: calc(1060px * 0.07); /* ~84.8px - consistent height relative to body */
   min-height: 58px;
   padding: 18px 24px;
   font-size: 1.2rem;
@@ -296,7 +319,7 @@ body {
   outline: none;
   border-color: #000;
   background: #ffeddd;
-  border-width: 4px;
+  border-width: 3px;
 }
 
 .option-button:active {
@@ -306,7 +329,7 @@ body {
 .option-button.selected {
   background: #ffeddd;
   border-color: #000;
-  border-width: 2px;
+  border-width: 3px;
   color: #000;
 }
 
@@ -315,6 +338,14 @@ body {
   line-height: 1.5;
   font-size: inherit;
   text-align: center;
+  word-wrap: break-word;
+  overflow-wrap: break-word;
+  hyphens: auto;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
 }
 
 button {
@@ -352,7 +383,7 @@ button:active {
   gap: 0;
   flex-shrink: 0;
   width: 100%;
-  margin-top: 2em;
+  margin-top: 0;
   padding: 0 1em;
   box-sizing: border-box;
 }
@@ -370,6 +401,7 @@ button:active {
   touch-action: manipulation;
   -webkit-tap-highlight-color: transparent;
   padding: 23px 95px;
+  margin: 2em 0 2em 0;
   min-height: 58px;
   box-sizing: border-box;
 }
@@ -400,7 +432,8 @@ button:active {
   text-align: center;
   display: block;
   width: 100%;
-  margin-top: 2em;
+  margin-top: 0;
+  flex-shrink: 0;
 }
 
 .home-link-footer:hover {
@@ -515,7 +548,7 @@ p {
   color: #000;
   text-align: center;
   line-height: 1.2;
-  margin: 0;
+  margin-top: 0;
   padding: 0;
 }
 
@@ -530,7 +563,6 @@ p {
   cursor: pointer;
   transition: all 0.2s ease;
   width: 75%;
-  margin-top: .75em;
   max-width: 300px;
   min-height: 56px;
   box-sizing: border-box;

@@ -119,7 +119,7 @@ const QuestionSequence = () => {
     const fillPercentage = (currentQuestion / totalQuestions) * 100;
 
     return (
-      <div className="question-container">
+      <>
         <h1 className="question-title">
           Question {questionnaireState.currentQuestionIndex + 1}
         </h1>
@@ -140,7 +140,8 @@ const QuestionSequence = () => {
             </button>
           ))}
         </div>
-      </div>
+
+      </>
     );
   };
 
