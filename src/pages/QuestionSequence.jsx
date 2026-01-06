@@ -33,11 +33,14 @@ const QuestionSequence = () => {
     console.log("question index: ", questionnaireState.currentQuestionIndex);
     console.log("selected answer: ", selectedAnswer);
     
+    if(selectedAnswer === null) {
+      questionnaireState.currentQuestionIndex = 0;
+      return;
+    }
     //if (selectedAnswer <= 4 && questionnaireState.currentQuestionIndex < 5) {
     setSelectedAnswer(null);
     
     // clears answer state to allow next answer to be set
-
     questionnaireState.currentQuestionIndex += 1;
     //}
   };
