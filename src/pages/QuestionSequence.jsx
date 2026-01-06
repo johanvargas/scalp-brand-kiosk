@@ -34,7 +34,7 @@ const QuestionSequence = () => {
     console.log("selected answer: ", selectedAnswer);
     
     if(selectedAnswer === null) {
-      questionnaireState.currentQuestionIndex = 0;
+      questionnaireState.currentQuestionIndex = questionnaireState.currentQuestionIndex;
       return;
     }
     //if (selectedAnswer <= 4 && questionnaireState.currentQuestionIndex < 5) {
