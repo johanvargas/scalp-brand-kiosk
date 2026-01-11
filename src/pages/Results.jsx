@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from "react";
 import { useActionData } from "react-router";
+import { io } from "socket.io-client";
 import { HomeLink } from "../components/index.js";
 import products from "../database/products.js"; 
-
 
 export default function Results() {
   const actData = useActionData();
@@ -28,6 +28,13 @@ export default function Results() {
   const handlePrev = () => {
     setCurrentImageIndex((prev) => (prev - 1 + carouselImages.length) % carouselImages.length);
   };
+
+  const serialInterface = (currentProductIndex) => {
+    // change button text??
+    // run serial lights with correct selection
+
+    const socket = io("http://localhost:8080");
+  }
 
   return (
     <div className="page-container results-page">
@@ -73,7 +80,7 @@ export default function Results() {
 
         <button 
           className="results-cta-button"
-          onClick={() => "animation to cubby"}
+          onClick={() => serialInterface(currentProductIndex)}
         >
           See Product at Shelf →
         </button>

@@ -94,7 +94,6 @@ body {
   color: #000;
   margin: 0 0 1em 0;
 }
-
 .results-title {
   font-size: 3rem;
   font-weight: 700;
@@ -103,7 +102,6 @@ body {
   position: relative;
   display: inline-block;
 }
-
 .results-title-underline {
   display: block;
   width: 100%;
@@ -128,14 +126,50 @@ body {
   justify-content: center;
   align-items: center;
   min-height: 300px;
+  position: relative;
 }
 
 .product-image {
   max-width: 100%;
-  max-height: 400px;
+  max-height: 420px;
   object-fit: contain;
   width: auto;
   height: auto;
+}
+
+.carousel-button {
+  position: absolute;
+  width: 25px;
+  height: 25px;
+  min-width: 25px;
+  min-height: 25px;
+  border-radius: 50%;
+  border: 1px solid gray;
+  background-color: #ffeddd;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  z-index: 10;
+  transition: opacity 0.2s ease;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+.carousel-button:hover {
+  opacity: 0.8;
+}
+
+.carousel-button svg {
+  color: rgba(0, 0, 0, 0.7);
+}
+
+.carousel-button-prev {
+  left: 10px;
+}
+
+.carousel-button-next {
+  right: 10px;
 }
 
 .results-cta-button {
