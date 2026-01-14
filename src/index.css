@@ -24,8 +24,8 @@ body {
   flex-direction: column;
   justify-content: flex-start;
   align-items: center;
-  width: 788px;
-  height: 1060px;
+  width: 100vw;
+  height: 100vh;
   padding: 0;
   font-size: 1.125rem;
   box-sizing: border-box;
@@ -48,7 +48,7 @@ body {
   align-items: center;
   justify-content: flex-start;
   gap: 12px;
-  height: 1060px;
+  height: 100vh;
   box-sizing: border-box;
   overflow: hidden;
 }
@@ -56,7 +56,6 @@ body {
 .page-container.home-page {
   padding-top: 0;
   padding-bottom: 0;
-  height: 1060px;
 }
 
 .page-container.question-page {
@@ -507,8 +506,7 @@ p {
 .home-page {
   background-color: #ffffff !important;
   padding: 0;
-  height: 1060px;
-  max-height: 1060px;
+  height: 100vh;
   display: flex;
   flex-direction: column;
   align-items: stretch;
@@ -556,7 +554,7 @@ p {
   gap: 2em;
   min-height: 0;
   box-sizing: border-box;
-  height: calc(1060px - 434px);
+  height: calc(100vh - 434px);
   z-index: 1;
 }
 
