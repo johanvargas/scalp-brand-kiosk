@@ -46,12 +46,6 @@ const QuestionSequence = () => {
   };
 
   const Button = () => {
-    //if (questionnaireState.currentQuestionIndex < 5) {
-    //  updateAnswerWeight(
-    //    selectedAnswer,
-    //    questionnaireState.currentQuestionIndex,
-    //  );
-    //}
 
     return (
       <>

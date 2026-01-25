@@ -65,7 +65,7 @@ export default function Home() {
         </h1>
         <button 
           className="home-cta-button"
-          onClick={() => { navigate("/quiz") }}
+          onClick={() => { navigate("/quiz", { viewTransition: true }) }}
         >
           Start Here
         </button>
