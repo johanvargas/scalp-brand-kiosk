@@ -81,13 +81,13 @@ const QuestionSequence = () => {
                 name="weightValue4"
                 value={questionnaireState.answerWeight[4]}
               />
-              <button type="submit" className="nav-button next-button">
+              <button type="submit" className="nav-button next-button align-middle pb-1 px-6">
                 See Your Results
               </button>
             </Form>
           ) : (
             <button
-              className="nav-button next-button"
+              className="nav-button next-button align-middle"
               onClick={() => handleNext()}
             >
               Next

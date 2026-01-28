@@ -69,7 +69,7 @@ export default function Home() {
         >
           Start Here
         </button>
-        <p className="home-footer-link">Find more at Walmart.com</p>
+        <p className="home-footer-link m-10">Find more at Walmart.com</p>
       </div>
     </div>
   );

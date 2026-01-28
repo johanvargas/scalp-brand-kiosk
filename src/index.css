@@ -4,18 +4,12 @@
    BASE STYLES
    ============================================ */
 :root {
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue', sans-serif;
-  line-height: 1.6;
+  font-family: 'Helvetica', sans-serif;
   font-weight: 400;
-  font-size: 18px;
-  color-scheme: light dark;
-  color: #0071CE;
   background-color: #ffffff;
   font-synthesis: none;
   text-rendering: optimizeLegibility;
-  -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  -webkit-tap-highlight-color: rgba(0, 113, 206, 0.1);
 }
 
 body {
@@ -27,10 +21,48 @@ body {
   width: 100vw;
   height: 100vh;
   padding: 0;
-  font-size: 1.125rem;
+  font-size: 1.2rem;
   box-sizing: border-box;
   background-color: #ffffff;
   overflow-x: hidden;
+}
+
+
+button {
+
+  font-weight: 600;
+  font-family: inherit;
+  background-color: #856A00;
+  cursor: pointer;
+  transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+  touch-action: manipulation;
+}
+
+button:hover {
+  transform: translateY(-2px);
+}
+
+button:active {
+  transform: translateY(0);
+}
+
+/* Typography */
+h1 {
+  font-size: 3.9rem;
+  font-weight: 700;
+  line-height: 1.1em;
+}
+
+h2 {
+  font-size: 2.7rem;
+  font-weight: 600;
+  margin: 0.5em 0;
+}
+
+h3 {
+  font-size: 2rem;
+  font-weight: 600;
+  margin: 0.5em 0;
 }
 
 /* ============================================
@@ -41,15 +73,12 @@ body {
 .page-container {
   position: relative;
   width: 100vw;
+  height: 100vh;
   margin: 0 auto;
-  padding: 20px 24px 24px 24px;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: flex-start;
-  gap: 12px;
-  height: 100vh;
-  box-sizing: border-box;
   overflow: hidden;
 }
 
@@ -94,10 +123,9 @@ body {
   margin: 0 0 1em 0;
 }
 .results-title {
-  font-size: 3rem;
+  font-size: 4em;
   font-weight: 700;
   color: #000;
-  margin: 0 0 0em 0;
   position: relative;
   display: inline-block;
 }
@@ -106,12 +134,11 @@ body {
   width: 100%;
   height: 5px;
   background-color: #000;
-  margin: 0.5em auto 0;
   position: relative;
 }
 
 .results-description {
-  font-size: 1.61rem;
+  font-size: 1.3rem;
   font-weight: 400;
   color: #000;
   margin: 1em 0 0 0;
@@ -150,7 +177,7 @@ body {
   justify-content: center;
   cursor: pointer;
   z-index: 10;
-  transition: opacity 0.2s ease;
+  transition: opacity 0.5s ease;
   padding: 0;
   box-sizing: border-box;
 }
@@ -173,20 +200,16 @@ body {
 
 .results-cta-button {
   flex: none;
-  font-size: 1.5rem;
-  font-weight: 700;
-  border-radius: 42px;
-  border: none;
+  font-size: 1.3rem;
+  font-weight: 600;
+  border-radius: 50px;
   background: #000;
   color: #fff;
   cursor: pointer;
-  transition: all 0.2s ease;
+  transition: all 0.5s ease;
   touch-action: manipulation;
-  -webkit-tap-highlight-color: transparent;
-  padding: 23px 95px;
-  margin: 1em 0 1em 0;
-  min-height: 58px;
-  box-sizing: border-box;
+  width: 100%;
+  max-width: 330px;
 }
 
 .results-cta-button:hover:not(:disabled),
@@ -202,7 +225,7 @@ body {
 .results-cta-button:disabled {
   opacity: 0.4;
   cursor: not-allowed;
-  background: #666;
+  background: #856A00;
 }
 
 /* Question Container */
@@ -217,16 +240,15 @@ body {
   display: flex;
   flex-direction: column;
   align-items: center;
-  width: 500px;
   box-sizing: border-box;
 }
 
 .question-page {
-  width: 66.1vw;
+  width: calc(100vw * 0.8);
 }
 
 .question-title {
-  font-size: 4rem;
+  font-size: 5rem;
   font-weight: 700;
   color: #000;
   text-align: center;
@@ -247,10 +269,10 @@ body {
   background-color: #000;
   /* Create 5 equal sections with divider lines (1px white dividers) */
   background-image: 
-    linear-gradient(to right, transparent 0%, transparent calc(20% - 0.5px), #fff calc(20% - 0.5px), #fff calc(20% + 0.5px), transparent calc(20% + 0.5px)),
-    linear-gradient(to right, transparent 0%, transparent calc(40% - 0.5px), #fff calc(40% - 0.5px), #fff calc(40% + 0.5px), transparent calc(40% + 0.5px)),
-    linear-gradient(to right, transparent 0%, transparent calc(60% - 0.5px), #fff calc(60% - 0.5px), #fff calc(60% + 0.5px), transparent calc(60% + 0.5px)),
-    linear-gradient(to right, transparent 0%, transparent calc(80% - 0.5px), #fff calc(80% - 0.5px), #fff calc(80% + 0.5px), transparent calc(80% + 0.5px));
+    linear-gradient(to right, transparent 0%, transparent calc(20% - 0.5px), #000 calc(20% - 0.5px), #000 calc(20% + 0.5px), transparent calc(20% + 0.5px)),
+    linear-gradient(to right, transparent 0%, transparent calc(40% - 0.5px), #000 calc(40% - 0.5px), #000 calc(40% + 0.5px), transparent calc(40% + 0.5px)),
+    linear-gradient(to right, transparent 0%, transparent calc(60% - 0.5px), #000 calc(60% - 0.5px), #000 calc(60% + 0.5px), transparent calc(60% + 0.5px)),
+    linear-gradient(to right, transparent 0%, transparent calc(80% - 0.5px), #000 calc(80% - 0.5px), #000 calc(80% + 0.5px), transparent calc(80% + 0.5px));
   background-size: 100% 100%;
   background-repeat: no-repeat;
   border-radius: 1px;;
@@ -263,7 +285,8 @@ body {
   left: 0;
   bottom: 0;
   width: var(--fill-percentage, 0%);
-  background-color: #7f766e ; /* Light color for completed sections */
+  /*background-color: #7f766e ; /* Light color for completed sections */
+  background-color: #fff ; /* Light color for completed sections */
   transition: width 0.3s ease;
   z-index: 1;
 }
@@ -277,28 +300,27 @@ body {
   bottom: 0;
   /* Recreate dividers on top so they're visible over filled sections */
   background-image: 
-    linear-gradient(to right, transparent 0%, transparent calc(20% - 0.5px), #fff calc(20% - 0.5px), #fff calc(20% + 0.5px), transparent calc(20% + 0.5px)),
-    linear-gradient(to right, transparent 0%, transparent calc(40% - 0.5px), #fff calc(40% - 0.5px), #fff calc(40% + 0.5px), transparent calc(40% + 0.5px)),
-    linear-gradient(to right, transparent 0%, transparent calc(60% - 0.5px), #fff calc(60% - 0.5px), #fff calc(60% + 0.5px), transparent calc(60% + 0.5px)),
-    linear-gradient(to right, transparent 0%, transparent calc(80% - 0.5px), #fff calc(80% - 0.5px), #fff calc(80% + 0.5px), transparent calc(80% + 0.5px));
+    linear-gradient(to right, transparent 0%, transparent calc(20% - 0.5px), #000 calc(20% - 0.5px), #000 calc(20% + 0.5px), transparent calc(20% + 0.5px)),
+    linear-gradient(to right, transparent 0%, transparent calc(40% - 0.5px), #000 calc(40% - 0.5px), #000 calc(40% + 0.5px), transparent calc(40% + 0.5px)),
+    linear-gradient(to right, transparent 0%, transparent calc(60% - 0.5px), #000 calc(60% - 0.5px), #000 calc(60% + 0.5px), transparent calc(60% + 0.5px)),
+    linear-gradient(to right, transparent 0%, transparent calc(80% - 0.5px), #000 calc(80% - 0.5px), #000 calc(80% + 0.5px), transparent calc(80% + 0.5px));
   background-size: 100% 100%;
   background-repeat: no-repeat;
-  z-index: 2;
+  z-index: 0;
   pointer-events: none;
 }
 
 .question-text {
   font-size: 1.61rem;
-  font-weight: 400;
+  font-weight: 600;
   color: #000;
-  line-height: 1.5;
   text-align: center;
   flex-shrink: 0;
   width: 100%;
   max-width: 100%;
   padding: 0;
   box-sizing: border-box;
-  height: calc(1060px * 0.10); /* ~106px - consistent height relative to body */
+  height: calc(100vh * 0.10); /* ~1060px - consistent height relative to body */
   min-height: 70px;
   display: flex;
   align-items: center;
@@ -324,35 +346,28 @@ body {
 
 .option-button {
   width: 100%;
-  max-width: 680px;
-  height: calc(1060px * 0.07); /* ~84.8px - consistent height relative to body */
-  min-height: 58px;
-  padding: 18px 24px;
+  height: calc(100vh * 0.07); /* ~84.8px - consistent height relative to body */
   font-size: 1.2rem;
   font-weight: 500;
   text-align: center;
   background: #fff;
-  border: 3px solid #333;
-  border-radius: 17px;
+  border: 2px solid #131313;
+  border-radius: 20px;
   color: #000;
   cursor: pointer;
-  transition: all 0.2s ease;
+  transition: all 0.5s ease;
   display: flex;
   align-items: center;
   justify-content: center;
   touch-action: manipulation;
-  -webkit-tap-highlight-color: transparent;
-  flex-shrink: 0;
-  box-sizing: border-box;
-  margin: 0;
 }
 
 .option-button:hover,
 .option-button:focus {
   outline: none;
-  border-color: #000;
+  border-color: #131313;
   background: #ffeddd;
-  border-width: 3px;
+  border-width: 2px;
 }
 
 .option-button:active {
@@ -361,51 +376,21 @@ body {
 
 .option-button.selected {
   background: #ffeddd;
-  border-color: #000;
-  border-width: 3px;
-  color: #000;
+  border-color: #131313;
+  border-width: 2px;
+  color: #131313;
 }
 
 .option-text {
   width: 100%;
-  line-height: 1.5;
-  font-size: inherit;
+  font-weight: 550;
+  font-size: 1.1em;
   text-align: center;
   word-wrap: break-word;
   overflow-wrap: break-word;
   hyphens: auto;
   overflow: hidden;
   text-overflow: ellipsis;
-  display: -webkit-box;
-  -webkit-line-clamp: 3;
-  -webkit-box-orient: vertical;
-}
-
-button {
-  border-radius: 16px;
-  border: 2px solid transparent;
-  padding: 1.25em 2em;
-  font-size: 1.5rem;
-  font-weight: 600;
-  font-family: inherit;
-  background-color: #f5f5f5;
-  cursor: pointer;
-  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-  min-height: 56px;
-  min-width: 120px;
-  touch-action: manipulation;
-  -webkit-tap-highlight-color: transparent;
-  user-select: none;
-  box-sizing: border-box;
-}
-
-button:hover {
-  border-color: #d4af37;
-  transform: translateY(-2px);
-}
-
-button:active {
-  transform: translateY(0);
 }
 
 /* Quiz Navigation */
@@ -413,30 +398,23 @@ button:active {
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 0;
-  flex-shrink: 0;
   width: 100%;
-  margin-top: 0;
-  padding: 0 1em;
-  box-sizing: border-box;
 }
 
 .nav-button.next-button {
   flex: none;
-  font-size: 1.5rem;
+  font-size: 1.7rem;
   font-weight: 700;
-  border-radius: 42px;
-  border: none;
+  border-radius: 60px;
   background: #000;
   color: #fff;
   cursor: pointer;
-  transition: all 0.2s ease;
+  transition: all 0.5s ease;
   touch-action: manipulation;
-  -webkit-tap-highlight-color: transparent;
-  padding: 23px 95px;
-  margin: 2em 0 2em 0;
-  min-height: 58px;
-  box-sizing: border-box;
+  margin: 4.3em 0 4em 0;
+  width: 100%;
+  height: 120px;
+  max-width: 260px;
 }
 
 .nav-button.next-button:hover:not(:disabled),
@@ -452,54 +430,23 @@ button:active {
 .nav-button.next-button:disabled {
   opacity: 0.4;
   cursor: not-allowed;
-  background: #666;
+  background: #856A00;
 }
 
 .home-link-footer {
-  font-size: 1.5rem;
+  font-size: 2rem;
   font-weight: 600;
   color: #000;
   text-decoration: underline;
   cursor: pointer;
-  transition: opacity 0.2s ease;
+  transition: opacity 0.5s ease;
   text-align: center;
   display: block;
   width: 100%;
-  margin-top: 0;
-  flex-shrink: 0;
 }
 
 .home-link-footer:hover {
   opacity: 0.7;
-}
-
-/* Typography */
-h1 {
-  font-size: 3.8rem;
-  line-height: 1.3;
-  font-weight: 700;
-  letter-spacing: -0.02em;
-  margin: 1em 0;
-}
-
-h2 {
-  font-size: 2.75rem;
-  line-height: 1.3;
-  font-weight: 600;
-  margin: 0.5em 0;
-}
-
-h3 {
-  font-size: 2rem;
-  line-height: 1.4;
-  font-weight: 600;
-  margin: 0.5em 0;
-}
-
-p {
-  font-size: 1.25rem;
-  line-height: 1.7;
-  margin: 0.75em 0;
 }
 
 /* Home Page Styles */
@@ -576,33 +523,28 @@ p {
 }
 
 .home-title {
-  font-size: 3.16rem;
+  font-size: 4rem;
   font-weight: 700;
   color: #000;
   text-align: center;
-  line-height: 1.3;
-  margin-top: 0;
-  margin-bottom: 1.1em;
 }
 
 .home-cta-button {
+  padding: 1.25em 2em;
   background: #000;
   color: #fff;
-  border: none;
-  border-radius: 50px;
-  padding: 25px 50px;
-  font-size: 1.75rem;
-  font-weight: 700;
+  border-radius: 60px;
+  font-size: 1.6em;
   cursor: pointer;
-  transition: all 0.2s ease;
-  width: 75%;
-  max-width: 300px;
-  min-height: 56px;
-  box-sizing: border-box;
+  transition: all 0.5s ease;
+  width: 100%;
+  max-width: 270px;
+  text-align: center;
+  margin-top: 2.8em;
 }
 
 .home-cta-button:hover {
-  background: #333;
+  background: #856A00;
 }
 
 .home-cta-button:active {
@@ -610,11 +552,11 @@ p {
 }
 
 .home-footer-link {
-  font-size: 1.5rem;
-  font-weight: 600;
+  font-size: 2rem;
+  font-weight: 700;
   color: #000;
   text-align: center;
-  margin: 0;
+  margin-top: 2.4em;
 }
 
 /* ============================================
@@ -630,8 +572,8 @@ p {
 html {
   scroll-behavior: smooth;
   background-color: #ffffff;
-  width: 788px;
-  height: 1060px;
+  width: 100vw;
+  height: 100vh;
   overflow-x: hidden;
 }
 
@@ -653,31 +595,4 @@ html:has(.home-page) {
 
 html:has(.home-page) body {
   background-color: #ffffff !important;
-}
-
-/* ============================================
-   DARK MODE SUPPORT
-   ============================================ */
-
-@media (prefers-color-scheme: dark) {
-  :root {
-    color: #0071CE;
-    background-color: #ffffff;
-  }
-
-  .question-container {
-    background: transparent;
-    border-color: transparent;
-  }
-
-  .option-button {
-    background: #fff;
-    color: #000;
-    border-color: #333;
-  }
-
-  .option-button:hover {
-    background: #ffeddd;
-    border-color: #000;
-  }
 }
