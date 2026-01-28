@@ -20,16 +20,13 @@ body {
   align-items: center;
   width: 100vw;
   height: 100vh;
-  padding: 0;
   font-size: 1.2rem;
   box-sizing: border-box;
   background-color: #ffffff;
   overflow-x: hidden;
 }
 
-
 button {
-
   font-weight: 600;
   font-family: inherit;
   background-color: #856A00;
@@ -47,6 +44,7 @@ button:active {
 }
 
 /* Typography */
+
 h1 {
   font-size: 3.9rem;
   font-weight: 700;
@@ -231,16 +229,12 @@ h3 {
 /* Question Container */
 .question-container {
   background: transparent;
-  border: none;
-  border-radius: 0;
   padding: 2em 1em;
-  box-shadow: none;
   flex: 1;
   min-height: 0;
   display: flex;
   flex-direction: column;
   align-items: center;
-  box-sizing: border-box;
 }
 
 .question-page {
@@ -287,7 +281,7 @@ h3 {
   width: var(--fill-percentage, 0%);
   /*background-color: #7f766e ; /* Light color for completed sections */
   background-color: #fff ; /* Light color for completed sections */
-  transition: width 0.3s ease;
+  transition: width 0.5s ease;
   z-index: 1;
 }
 
@@ -311,7 +305,7 @@ h3 {
 }
 
 .question-text {
-  font-size: 1.61rem;
+  font-size: 1.6rem;
   font-weight: 600;
   color: #000;
   text-align: center;
@@ -338,10 +332,6 @@ h3 {
   gap: 0.6em;
   margin: 0;
   width: 100%;
-  max-width: 100%;
-  padding: 0;
-  box-sizing: border-box;
-  flex-shrink: 0;
 }
 
 .option-button {
@@ -530,7 +520,7 @@ h3 {
 }
 
 .home-cta-button {
-  padding: 1.25em 2em;
+  padding: 1.3em 2em;
   background: #000;
   color: #fff;
   border-radius: 60px;
@@ -548,7 +538,7 @@ h3 {
 }
 
 .home-cta-button:active {
-  transform: scale(0.98);
+  transform: scale(0.9);
 }
 
 .home-footer-link {
