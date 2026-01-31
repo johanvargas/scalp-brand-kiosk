@@ -33,7 +33,7 @@ export default function Results() {
     // change button text??
     // run serial lights with correct selection
 
-    const socket = io("http://localhost:8080");
+    const socket = io("http://localhost:8084");
   }
 
   return (

@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { Form } from "react-router";
+import { Form, useViewTransitionState } from "react-router";
 import { proxy, useSnapshot } from "valtio";
 import questionnaireState from "../state/questionnaireState.js";
 import { updateAnswerWeight } from "../components/updateAnswerWeight.js";
@@ -15,11 +15,13 @@ const QuestionSequence = () => {
   const [selectedAnswer, setSelectedAnswer] = useState(null);
   let questionSet = snap.questions[questionnaireState.currentQuestionIndex];
 
+  const url = "/results";
+  const isTransitioning = useViewTransitionState();
+
   useEffect(() => {
     questionnaireState.currentQuestionIndex = 0;
-
-    console.log("start - - question index: ", questionnaireState.currentQuestionIndex);
-    console.log("start - - selected answer: ", selectedAnswer);
+    //console.log("start - - question index: ", questionnaireState.currentQuestionIndex);
+    //console.log("start - - selected answer: ", selectedAnswer);
   }, []);
 
   // function to move to next
@@ -46,12 +48,11 @@ const QuestionSequence = () => {
   };
 
   const Button = () => {
-
     return (
       <>
         <div className="quiz-navigation">
           {questionnaireState.currentQuestionIndex === 4 && Number.isInteger(selectedAnswer) ? (
-            <Form action="/results" method="post">
+            <Form action={url} style={{ viewTransitionName: isTransitioning }} method="post">
               <input
                 type="hidden"
                 name="weightValue0"

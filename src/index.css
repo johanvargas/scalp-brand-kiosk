@@ -199,7 +199,7 @@ h3 {
 
 .results-cta-button {
   flex: none;
-  font-size: 1.3rem;
+  font-size: 1.5rem;
   font-weight: 600;
   border-radius: 60px;
   background: #000;
@@ -208,8 +208,10 @@ h3 {
   transition: all 0.5s ease;
   touch-action: manipulation;
   width: 100%;
-  max-width: 260px;
-  min-height: 138px;
+  max-width: 300px;
+  min-height: 118px;
+  margin-bottom: 5.4em;
+  margin-top: 1.3em;
 }
 
 .results-cta-button:hover:not(:disabled),
