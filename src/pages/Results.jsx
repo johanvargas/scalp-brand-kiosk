@@ -30,9 +30,6 @@ export default function Results() {
   };
 
   const serialInterface = (currentProductIndex) => {
-    // change button text??
-    // run serial lights with correct selection
-
     const socket = io("http://localhost:8084");
   }
 
