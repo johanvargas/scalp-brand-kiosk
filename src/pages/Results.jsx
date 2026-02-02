@@ -1,8 +1,24 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useMemo } from "react";
 import { useActionData } from "react-router";
 import { io } from "socket.io-client";
 import { HomeLink } from "../components/index.js";
-import products from "../database/products.js"; 
+import products from "../database/products.js";
+
+// Eagerly import all images from numbered asset directories
+const allImages = import.meta.glob('../assets/[0-4]/PNGs/*.png', { eager: true });
+
+// Organize images by folder number
+const imagesByFolder = {};
+Object.entries(allImages).forEach(([path, module]) => {
+  const match = path.match(/\.\.\/assets\/(\d+)\/PNGs\//);
+  if (match) {
+    const folderNum = parseInt(match[1], 10);
+    if (!imagesByFolder[folderNum]) {
+      imagesByFolder[folderNum] = [];
+    }
+    imagesByFolder[folderNum].push(module.default);
+  }
+});
 
 export default function Results() {
   const actData = useActionData();
@@ -10,16 +26,19 @@ export default function Results() {
   const currentProduct = products[currentProductIndex] || products[0];
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
 
-  // Create an array of images using the current product image as stand-in
-  const carouselImages = [
-    currentProduct.image || "/stand-in-2.png",
-    currentProduct.image || "/stand-in-2.png",
-    currentProduct.image || "/stand-in-2.png"
-  ];
+  // Get carousel images for the current product index
+  const carouselImages = useMemo(() => {
+    return imagesByFolder[currentProductIndex] || imagesByFolder[0] || ["/stand-in-2.png"];
+  }, [currentProductIndex]);
 
   useEffect(() => {
     setCurrentProductIndex(actData.selection);
-  },[]);
+  }, []);
+
+  // Reset image index when product changes
+  useEffect(() => {
+    setCurrentImageIndex(0);
+  }, [currentProductIndex]);
 
   const handleNext = () => {
     setCurrentImageIndex((prev) => (prev + 1) % carouselImages.length);
@@ -31,6 +50,7 @@ export default function Results() {
 
   const serialInterface = (currentProductIndex) => {
     const socket = io("http://localhost:8084");
+    socket.on();
   }
 
   return (

@@ -33,7 +33,7 @@ export default function Home() {
       setCurrentIndex((prevIndex) => 
         (prevIndex + 1) % carouselImages.length
       );
-    }, 4000); // Change image every 4 seconds
+    }, 10000); // Change image every 4 seconds
 
     return () => clearInterval(interval);
   }, [isPaused]);
