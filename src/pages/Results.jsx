@@ -3,6 +3,7 @@ import { useActionData } from "react-router";
 import { io } from "socket.io-client";
 import { HomeLink } from "../components/index.js";
 import products from "../database/products.js";
+import { metaPropertiesStore } from "../state/index.js";
 
 // Eagerly import all images from numbered asset directories
 const allImages = import.meta.glob('../assets/[0-4]/PNGs/*.png', { eager: true });

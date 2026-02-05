@@ -9,7 +9,7 @@ import { fileURLToPath } from "url";
 const app = express();
 const server = new HttpServer(app);
 const io = new SocketIOServer(server, {
-  cors: { origin: "http://localhost:5174", methods: ["GET", "POST"] },
+  cors: { origin: "http://localhost:5173", methods: ["GET", "POST"] },
 });
 
 const port = 8084;
