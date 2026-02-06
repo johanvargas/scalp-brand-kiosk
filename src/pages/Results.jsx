@@ -1,44 +1,66 @@
-import React, { useState, useEffect, useMemo } from "react";
+import React, { useState, useEffect } from "react";
 import { useActionData } from "react-router";
 import { io } from "socket.io-client";
 import { HomeLink } from "../components/index.js";
 import products from "../database/products.js";
 import { metaPropertiesStore } from "../state/index.js";
 
-// Eagerly import all images from numbered asset directories
-const allImages = import.meta.glob('../assets/[0-4]/PNGs/*.png', { eager: true });
+// Lazy glob - images are loaded on-demand, not at bundle time
+const imageModules = import.meta.glob('../assets/[0-4]/PNGs/*.png');
 
-// Organize images by folder number
-const imagesByFolder = {};
-Object.entries(allImages).forEach(([path, module]) => {
-  const match = path.match(/\.\.\/assets\/(\d+)\/PNGs\//);
-  if (match) {
-    const folderNum = parseInt(match[1], 10);
-    if (!imagesByFolder[folderNum]) {
-      imagesByFolder[folderNum] = [];
-    }
-    imagesByFolder[folderNum].push(module.default);
+// Cache loaded images to avoid re-fetching
+const imageCache = {};
+
+// Load images for a specific folder
+const loadImagesForFolder = async (folderNum) => {
+  if (imageCache[folderNum]) {
+    return imageCache[folderNum];
   }
-});
+
+  const folderPattern = `../assets/${folderNum}/PNGs/`;
+  const relevantPaths = Object.keys(imageModules).filter(path =>
+    path.startsWith(folderPattern)
+  );
+
+  const images = await Promise.all(
+    relevantPaths.map(async (path) => {
+      const module = await imageModules[path]();
+      return module.default;
+    })
+  );
+
+  imageCache[folderNum] = images;
+  return images;
+};
 
 export default function Results() {
   const actData = useActionData();
   const [currentProductIndex, setCurrentProductIndex] = useState(0);
   const currentProduct = products[currentProductIndex] || products[0];
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
-
-  // Get carousel images for the current product index
-  const carouselImages = useMemo(() => {
-    return imagesByFolder[currentProductIndex] || imagesByFolder[0] || ["/stand-in-2.png"];
-  }, [currentProductIndex]);
+  const [carouselImages, setCarouselImages] = useState(["/stand-in-2.png"]);
+  const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
     setCurrentProductIndex(actData.selection);
   }, []);
 
-  // Reset image index when product changes
+  // Load images and reset index when product changes
   useEffect(() => {
+    let isMounted = true;
+    setIsLoading(true);
     setCurrentImageIndex(0);
+
+    loadImagesForFolder(currentProductIndex).then((images) => {
+      if (isMounted) {
+        setCarouselImages(images.length > 0 ? images : ["/stand-in-2.png"]);
+        setIsLoading(false);
+      }
+    });
+
+    return () => {
+      isMounted = false;
+    };
   }, [currentProductIndex]);
 
   const handleNext = () => {
@@ -78,11 +100,15 @@ export default function Results() {
             </svg>
           </button>
           
-          <img 
-            src={carouselImages[currentImageIndex]} 
-            alt={currentProduct.name}
-            className="product-image"
-          />
+          {isLoading ? (
+            <div className="product-image loading-placeholder" />
+          ) : (
+            <img 
+              src={carouselImages[currentImageIndex]} 
+              alt={currentProduct.name}
+              className="product-image"
+            />
+          )}
           
           <button 
             className="carousel-button carousel-button-next"

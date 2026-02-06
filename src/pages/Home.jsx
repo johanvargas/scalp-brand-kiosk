@@ -7,6 +7,7 @@ import image4 from "../assets/scalp_carousel/AdobeStock_600696847.jpeg";
 import image5 from "../assets/scalp_carousel/AdobeStock_618796269.jpeg";
 import image6 from "../assets/scalp_carousel/AdobeStock_955634709.jpeg";
 import { resetQuestionnaireState } from "../state/questionnaireState.js";
+import { metaPropertiesStore } from "../state/index.js";
 
 const carouselImages = [
   { src: image1, alt: "Scalp care image 1" },
@@ -33,13 +34,18 @@ export default function Home() {
       setCurrentIndex((prevIndex) => 
         (prevIndex + 1) % carouselImages.length
       );
-    }, 10000); // Change image every 4 seconds
+    }, 8000); // Change image every 4 seconds
 
     return () => clearInterval(interval);
   }, [isPaused]);
   //reset the state-questionnaire
-  //
   //button needs to reset the values in the state-questionnaire before going to next page (quiz)
+
+  /* Functions */
+  const startButton = () => { 
+    metaPropertiesStore.start_impression()
+    navigate("/quiz", { viewTransition: true })
+  }
 
   return (
     <div className="page-container home-page">
@@ -61,11 +67,11 @@ export default function Home() {
         <h1 className="home-title">
           Find Your<br />
           Perfect Scalp-Care<br />
-          Shampoo
+          Routine
         </h1>
         <button 
           className="home-cta-button"
-          onClick={() => { navigate("/quiz", { viewTransition: true }) }}
+          onClick={startButton}
         >
           Start Here
         </button>
