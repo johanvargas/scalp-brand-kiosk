@@ -1,11 +1,12 @@
 import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router";
-import image1 from "../assets/scalp_carousel/AdobeStock_282261700.jpeg";
-import image2 from "../assets/scalp_carousel/AdobeStock_287429773.jpeg";
-import image3 from "../assets/scalp_carousel/AdobeStock_454999617.jpeg";
-import image4 from "../assets/scalp_carousel/AdobeStock_600696847.jpeg";
-import image5 from "../assets/scalp_carousel/AdobeStock_618796269.jpeg";
-import image6 from "../assets/scalp_carousel/AdobeStock_955634709.jpeg";
+
+import image1 from "../assets/scalp_carousel/Scalp Passive Image 1.png";
+import image2 from "../assets/scalp_carousel/Scalp Passive Image 2.png";
+import image3 from "../assets/scalp_carousel/Scalp Passive Image 3.png";
+import image4 from "../assets/scalp_carousel/Scalp Passive Image 4.png";
+import image5 from "../assets/scalp_carousel/Scalp Passive Image 5.png";
+import image6 from "../assets/scalp_carousel/Scalp Passive Image 6.png";
 import { resetQuestionnaireState } from "../state/questionnaireState.js";
 import { metaPropertiesStore } from "../state/index.js";
 

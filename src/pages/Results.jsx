@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { useActionData } from "react-router";
 import { io } from "socket.io-client";
-import { HomeLink } from "../components/index.js";
+import { HomeLink, useInactivityTimeout } from "../components/index.js";
 import products from "../database/products.js";
 import { metaPropertiesStore } from "../state/index.js";
 
@@ -34,6 +34,7 @@ const loadImagesForFolder = async (folderNum) => {
 };
 
 export default function Results() {
+  useInactivityTimeout(30000);
   const actData = useActionData();
   const [currentProductIndex, setCurrentProductIndex] = useState(0);
   const currentProduct = products[currentProductIndex] || products[0];
