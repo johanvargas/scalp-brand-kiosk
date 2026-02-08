@@ -34,6 +34,10 @@ const triggerLight = (data) => {
       setTimeout(() => sendCommand(`G005B[B 0 0 22]`), 100);
       setTimeout(() => sendCommand(`G111B[D 0 0 22]`), 150);
       setTimeout(() => sendCommand(`G111B[C 0 0 22]`), 200);
+      setTimeout(() => sendCommand(`G111B[B 0 0 22]`), 200);
+
+      // turn off main led
+      setTimeout(() => sendCommand(`G005B[A 0 25 22 0 50 12]`), 5000);
       break;
     case 1:
       setTimeout(() => sendCommand(`G005B[B 0 25 22 0 50 12]`), 50);
@@ -41,6 +45,10 @@ const triggerLight = (data) => {
       setTimeout(() => sendCommand(`G005B[A 0 0 22]`), 100);
       setTimeout(() => sendCommand(`G111B[D 0 0 22]`), 150);
       setTimeout(() => sendCommand(`G111B[C 0 0 22]`), 200);
+      setTimeout(() => sendCommand(`G111B[B 0 0 22]`), 200);
+
+      // turn off main led
+      setTimeout(() => sendCommand(`G005B[B 0 25 22 0 50 12]`), 5000);
       break;
     case 2:
       setTimeout(() => sendCommand(`G111B[D 0 25 22 0 50 12]`), 50);
@@ -48,6 +56,10 @@ const triggerLight = (data) => {
       setTimeout(() => sendCommand(`G005B[A 0 0 22]`), 100);
       setTimeout(() => sendCommand(`G005B[B 0 0 22]`), 150);
       setTimeout(() => sendCommand(`G111B[C 0 0 22]`), 200);
+      setTimeout(() => sendCommand(`G111B[D 0 0 22]`), 200);
+
+      // turn off main led
+      setTimeout(() => sendCommand(`G111B[D 0 25 22 0 50 12]`), 5000);
       break;
     case 3:
       setTimeout(() => sendCommand(`G111B[C 0 25 22 0 50 12]`), 50);
@@ -55,12 +67,31 @@ const triggerLight = (data) => {
       setTimeout(() => sendCommand(`G005B[A 0 0 22]`), 100);
       setTimeout(() => sendCommand(`G005B[B 0 0 22]`), 150);
       setTimeout(() => sendCommand(`G111B[D 0 0 22]`), 200);
+      setTimeout(() => sendCommand(`G111B[B 0 0 22]`), 200);
+
+      // turn off main led
+      setTimeout(() => sendCommand(`G111B[C 0 25 22 0 50 12]`), 5000);
+      break;
+    case 4:
+      setTimeout(() => sendCommand(`G111B[B 0 25 22 0 50 12]`), 50);
+
+      setTimeout(() => sendCommand(`G005B[A 0 0 22]`), 100);
+      setTimeout(() => sendCommand(`G005B[B 0 0 22]`), 150);
+      setTimeout(() => sendCommand(`G111B[D 0 0 22]`), 200);
+      setTimeout(() => sendCommand(`G111B[C 0 0 22]`), 200);
+
+      // turn off main led
+      setTimeout(() => sendCommand(`G111B[B 0 25 22 0 50 12]`), 5000);
       break;
     default:
       setTimeout(() => sendCommand(`G005B[A 0 0 22]`), 50);
       setTimeout(() => sendCommand(`G005B[B 0 0 22]`), 150);
       setTimeout(() => sendCommand(`G111B[D 0 0 22]`), 200);
       setTimeout(() => sendCommand(`G111B[C 0 0 22]`), 250);
+      setTimeout(() => sendCommand(`G111B[B 0 0 22]`), 250);
+
+      // turn off main led
+      setTimeout(() => sendCommand(`G005B[A 0 25 22 0 50 12]`), 5000);
       break;
   }
 };
@@ -98,7 +129,8 @@ io.on("connection", (socket) => {
   // Received messages
   socket.on("trigger", (data) => {
     console.log("trigger number; ", data);
-    triggerLight_DEV(data);
+    //triggerLight_DEV(data);
+    triggerLight(data);
   });
 });
 
@@ -108,8 +140,12 @@ import { SerialPort } from "serialport";
 
 /* Mock Seria Port Binding */
 import { MockBinding } from "@serialport/binding-mock";
-MockBinding.createPort('/dev/null', { echo: true, record: true })
-const serial_port = new SerialPort({ binding: MockBinding, path: "/dev/null",baudRate: 115200 });
+MockBinding.createPort("/dev/null", { echo: true, record: true });
+const serial_port = new SerialPort({
+  binding: MockBinding,
+  path: "/dev/null",
+  baudRate: 115200,
+});
 
 //const serial_port = new SerialPort({ path: "/dev/ttyUSB0", baudRate: 115200 });
 console.log(serial_port);
